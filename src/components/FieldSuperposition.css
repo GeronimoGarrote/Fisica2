@@ -1,0 +1,144 @@
+/* ── Controls ──────────────────────────────────────────────────────────────── */
+.fs-controls {
+  background: #f0f4ff;
+  border-radius: 12px;
+  padding: .9rem 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+}
+
+.fs-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fs-z-label {
+  min-width: 96px;
+  font-size: .95rem;
+  white-space: nowrap;
+}
+
+.fs-slider {
+  flex: 1;
+  accent-color: #6366f1;
+  cursor: pointer;
+  height: 4px;
+}
+
+.fs-btn-row {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+/* ── Main layout ───────────────────────────────────────────────────────────── */
+.fs-layout {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.fs-svg {
+  border-radius: 12px;
+  background: #fafafa;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(30,42,120,0.08);
+}
+
+/* ── Values panel ──────────────────────────────────────────────────────────── */
+.fs-values {
+  flex: 1;
+  min-width: 210px;
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+}
+
+.fs-card {
+  background: #f5f7ff;
+  border-radius: 12px;
+  padding: .8rem 1rem;
+  box-shadow: 0 2px 8px rgba(30,42,120,0.08);
+  overflow: hidden;
+}
+
+.fs-card-result {
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(30,42,120,0.08);
+  flex: 1;
+  margin-top: .4rem;
+}
+
+.fs-card-title {
+  font-size: .73rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: #888;
+  margin-bottom: .55rem;
+}
+
+.fs-valrow {
+  display: flex;
+  align-items: baseline;
+  gap: .35rem;
+  padding: .22rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+  font-size: .91rem;
+}
+
+.fs-valrow:last-child { border-bottom: none; }
+
+.fs-valrow-label {
+  flex: 1;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: .86rem;
+}
+
+.fs-valrow-num {
+  font-weight: 600;
+  color: #1a237e;
+  min-width: 68px;
+  text-align: right;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.fs-valrow-bold {
+  color: #6366f1;
+  font-size: 1.05rem;
+}
+
+.fs-valrow-unit {
+  font-size: .79rem;
+  color: #999;
+  min-width: 44px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ── Bar chart ─────────────────────────────────────────────────────────────── */
+.fs-chart-wrap {
+  margin-bottom: 1.25rem;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: .75rem .25rem .25rem;
+  box-shadow: 0 2px 8px rgba(30,42,120,0.06);
+}
+
+/* ── Explanation ───────────────────────────────────────────────────────────── */
+.fs-explanation {
+  font-size: .875rem;
+  line-height: 1.65;
+  color: #444;
+  background: #e8eaf6;
+  border-left: 4px solid #1a237e;
+  border-radius: 0 12px 12px 0;
+  padding: .8rem 1.1rem;
+  margin: 0;
+}

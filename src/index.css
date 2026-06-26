@@ -1,0 +1,16 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background-color: #f5f7fa;
+  background-image:
+    linear-gradient(rgba(30,42,120,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30,42,120,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: #1a1a2e;
+  min-height: 100vh;
+}

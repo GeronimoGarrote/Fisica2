@@ -1,0 +1,106 @@
+.fc-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.fc-root h2 {
+  align-self: flex-start;
+  font-size: 1.25rem;
+  color: #1a237e;
+  margin: 0;
+}
+
+.fc-counter {
+  font-size: .88rem;
+  color: #757575;
+  margin: 0;
+}
+
+/* ── 3-D flip scene ─────────────────────────────────────────────────────────── */
+.fc-scene {
+  width: 100%;
+  max-width: 640px;
+  height: 260px;
+  perspective: 1000px;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+
+.fc-scene:hover {
+  transform: translateY(-3px);
+}
+
+.fc-scene:focus-visible .fc-card {
+  box-shadow: 0 0 0 3px #6366f1;
+}
+
+.fc-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .45s ease;
+  border-radius: 16px;
+}
+
+.fc-scene--flipped .fc-card {
+  transform: rotateY(180deg);
+}
+
+.fc-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 2.5rem;
+  gap: .75rem;
+  text-align: center;
+}
+
+.fc-front {
+  background: #1a237e;
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(26,35,126,.28);
+}
+
+.fc-back {
+  background: #eef0ff;
+  color: #1a237e;
+  transform: rotateY(180deg);
+  box-shadow: 0 6px 24px rgba(99,102,241,.14);
+}
+
+.fc-tema {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+.fc-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 520px;
+}
+
+.fc-hint {
+  font-size: .78rem;
+  opacity: .55;
+  margin-top: auto;
+}
+
+/* ── Navigation ─────────────────────────────────────────────────────────────── */
+.fc-nav {
+  display: flex;
+  gap: 1rem;
+}
