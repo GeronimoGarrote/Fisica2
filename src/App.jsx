@@ -27,7 +27,7 @@ const PARTICIPANTES = [
 
 export default function App() {
   const [parcial, setParcial]       = useState(1)
-  const [activeTab, setActiveTab]   = useState('fields')
+  const [activeTab, setActiveTab]   = useState('conductores')
   const [menuOpen, setMenuOpen]     = useState(false)
   const menuRef                     = useRef(null)
 
