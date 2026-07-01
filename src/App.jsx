@@ -3,8 +3,10 @@ import './App.css'
 import FieldSuperposition from './components/FieldSuperposition'
 import CapacitorCircuit from './components/CapacitorCircuit'
 import Flashcards from './components/Flashcards'
+import ConductoresConcentricos from './components/ConductoresConcentricos'
 
 const TABS = [
+  { id: 'conductores', label: 'Conductores Concéntricos', Component: ConductoresConcentricos },
   { id: 'fields',     label: 'Superposición de Campos',  Component: FieldSuperposition },
   { id: 'capacitors', label: 'Circuito de Capacitores',  Component: CapacitorCircuit  },
   { id: 'flashcards', label: 'Flashcards de Repaso',     Component: Flashcards        },
@@ -117,10 +119,6 @@ export default function App() {
 
       <div className="app">
       <nav className="tab-bar">
-        {/* Disabled placeholder tab */}
-        <div className="tab-btn tab-btn--disabled" title="Todavía no resuelto">
-          Conductores concéntricos 
-        </div>
         {TABS.map(({ id, label }) => (
           <button
             key={id}

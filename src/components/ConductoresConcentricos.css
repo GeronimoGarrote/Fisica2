@@ -1,0 +1,165 @@
+/* ── Controls ──────────────────────────────────────────────────────────────── */
+.fs-controls {
+  background: #f0f4ff;
+  border-radius: 12px;
+  padding: .9rem 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+}
+
+.fs-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fs-z-label {
+  min-width: 96px;
+  font-size: .95rem;
+  white-space: nowrap;
+}
+
+.fs-slider {
+  flex: 1;
+  accent-color: #6366f1;
+  cursor: pointer;
+  height: 4px;
+}
+
+.fs-btn-row {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+/* ── Main layout ───────────────────────────────────────────────────────────── */
+.fs-layout {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.fs-svg {
+  border-radius: 12px;
+  background: #fafafa;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(30,42,120,0.08);
+}
+
+/* ── Values panel ──────────────────────────────────────────────────────────── */
+.fs-values {
+  flex: 1;
+  min-width: 210px;
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+}
+
+.fs-card {
+  background: #f5f7ff;
+  border-radius: 12px;
+  padding: .8rem 1rem;
+  box-shadow: 0 2px 8px rgba(30,42,120,0.08);
+  overflow: hidden;
+}
+
+.fs-card-result {
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(30,42,120,0.08);
+  flex: 1;
+  margin-top: .4rem;
+}
+
+.fs-card-title {
+  font-size: .73rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: #888;
+  margin-bottom: .55rem;
+}
+
+/* ── Component-specific ────────────────────────────────────────────────────── */
+.cc2-subtitle {
+  color: #666;
+  font-size: .9rem;
+  margin: -.5rem 0 1.25rem;
+}
+
+.cc2-zone {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.cc2-result {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #1a237e;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.cc2-title-spaced {
+  margin-top: .9rem;
+}
+
+/* ── Results table ─────────────────────────────────────────────────────────── */
+.cc-table-wrap {
+  margin-top: .75rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(30,42,120,0.08);
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.cc-table {
+  border-collapse: collapse;
+  font-size: .88rem;
+  width: 100%;
+  max-width: 640px;
+}
+
+.cc-table th,
+.cc-table td {
+  border: 1px solid #c5cae9;
+  padding: .45rem .8rem;
+  text-align: center;
+}
+
+.cc-table td {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: .83rem;
+}
+
+.cc-table th {
+  background: #1a237e;
+  color: #fff;
+  font-weight: 600;
+}
+
+.cc-table tbody tr:nth-child(even) {
+  background: #e8eaf6;
+}
+
+/* ── Line charts ───────────────────────────────────────────────────────────── */
+.fs-chart-wrap {
+  margin-top: 1.25rem;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: .75rem .25rem .25rem;
+  box-shadow: 0 2px 8px rgba(30,42,120,0.06);
+}
+
+.cc2-chart-title {
+  font-size: .85rem;
+  font-weight: 700;
+  color: #444;
+  text-align: center;
+  margin-bottom: .25rem;
+}
