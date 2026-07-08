@@ -1,5 +1,176 @@
 import { useState, useMemo } from 'react'
 
+const FUND_ITEMS = [
+  {
+    title: '⚡ ¿Qué es la Carga Eléctrica Q?',
+    content: (
+      <>
+        <p>
+          La carga eléctrica es una <strong>propiedad fundamental de la materia</strong>,
+          igual que la masa. No se puede ver directamente — se conoce por sus efectos:
+          dos cargas interactúan entre sí con fuerzas de atracción o repulsión.
+        </p>
+        <p>
+          Existen dos tipos: <strong>positiva y negativa</strong>. Cargas del mismo signo
+          se repelen; de signos opuestos se atraen. La asignación de + y − es convencional.
+        </p>
+        <p>
+          Se mide en <strong>Coulombs (C)</strong>. En este problema, Q no está
+          concentrada en un punto sino repartida en el volumen del cascarón dieléctrico
+          con densidad ρ(r). Para obtener la carga total hay que integrar:
+        </p>
+        <p><code>Q_total = ∫∫∫ ρ(r) dV = −1,44π μC ≈ −4,524 μC</code></p>
+        <p>
+          La carga es negativa porque ρ(r) = −3/r es negativa en todo el cascarón.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: '🔵 ¿Qué es el Campo Eléctrico E?',
+    content: (
+      <>
+        <p>
+          Una carga Q modifica el espacio a su alrededor. Esa modificación es el
+          <strong> campo eléctrico</strong>: una propiedad del espacio que se manifiesta
+          como fuerza cuando se coloca otra carga en ese punto.
+        </p>
+        <p>
+          Definición formal: el campo en un punto r⃗ es la fuerza que experimentaría
+          una carga de prueba infinitesimalmente pequeña q, dividida por esa carga:
+        </p>
+        <p><code>E⃗(r) = lim(q→0)  F⃗ / q</code></p>
+        <p>
+          Se mide en <strong>N/C</strong> (equivalente a V/m). Es un <strong>vector</strong>:
+          tiene módulo y dirección. En este problema, por simetría esférica, siempre
+          apunta en dirección radial: hacia afuera (+r̂) si la carga encerrada es positiva,
+          hacia adentro (−r̂) si es negativa.
+        </p>
+        <p>
+          Como Q_total es negativa, el campo apunta hacia el origen en todas las zonas
+          donde E ≠ 0 — por eso los valores son negativos en las fórmulas.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: '🟢 ¿Qué es el Potencial Eléctrico V?',
+    content: (
+      <>
+        <p>
+          El campo eléctrico es conservativo: el trabajo que realiza no depende del
+          camino recorrido, solo del punto de partida y llegada. Eso permite definir
+          una <strong>energía potencial por unidad de carga</strong>:
+        </p>
+        <p><code>V(r) = U(r) / q</code></p>
+        <p>
+          Se mide en <strong>Voltios (V)</strong>. Es un <strong>escalar</strong> (un número,
+          no un vector). Su relación con el campo es:
+        </p>
+        <p><code>E⃗ = −∇V   →   V(r) = −∫ E⃗ · dr⃗</code></p>
+        <p>
+          En este problema se integra de afuera hacia adentro con referencia V(∞) = 0.
+          Dos propiedades clave para el oral:
+        </p>
+        <p>
+          <strong>1)</strong> V es continuo en todo punto del espacio, incluso donde E
+          tiene saltos (fronteras del conductor). Un salto en V implicaría trabajo
+          infinito para mover una carga una distancia infinitesimal — imposible físicamente.
+        </p>
+        <p>
+          <strong>2)</strong> Donde E = 0, V es constante. Por eso el interior del
+          conductor y el vacío central tienen potencial constante.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: '📐 Ley de Gauss: enunciado y cuándo usarla',
+    content: (
+      <>
+        <p>
+          La Ley de Gauss relaciona el flujo eléctrico a través de cualquier superficie
+          cerrada con la carga encerrada dentro de ella:
+        </p>
+        <p><code>∮ E⃗ · dA⃗ = Q_enc / ε₀</code></p>
+        <p>
+          El <strong>flujo eléctrico</strong> es cuántas líneas de campo atraviesan la
+          superficie: E⃗ · dA⃗ es el producto escalar entre el campo y el diferencial de
+          área (que apunta hacia afuera de la superficie).
+        </p>
+        <p>
+          La ley siempre es válida, pero solo sirve para <strong>calcular E directamente</strong>
+          cuando la simetría del sistema garantiza que E es constante y perpendicular en
+          toda la superficie gaussiana elegida. En ese caso E sale de la integral:
+        </p>
+        <p><code>E · ∮ dA = Q_enc / ε₀</code></p>
+        <p>
+          Las tres simetrías que lo permiten son: esférica (superficie gaussiana = esfera),
+          cilíndrica (superficie = cilindro) y planar (superficie = caja/pillbox).
+          En este problema usamos simetría esférica.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: '🌐 Simetría esférica: por qué E sale de la integral',
+    content: (
+      <>
+        <p>
+          ρ(r) = −3/r depende <em>solo</em> de r, no de los ángulos θ ni φ.
+          Eso es simetría esférica perfecta. Sus consecuencias (del material teórico, CAPIT_03):
+        </p>
+        <p>
+          <strong>1)</strong> El campo solo puede tener componente radial:
+          <code>E⃗(r) = Eᵣ(r) r̂</code>
+          (las componentes angulares se anulan por simetría — cualquier rotación del sistema
+          deja el campo igual, por lo que no puede apuntar en ninguna dirección angular preferida).
+        </p>
+        <p>
+          <strong>2)</strong> Eᵣ(r) es igual en todos los puntos de una esfera de radio r.
+        </p>
+        <p>
+          Por eso se elige una superficie gaussiana esférica de radio r: en ella E es
+          constante y perpendicular, y puede salir de la integral:
+        </p>
+        <p><code>Eᵣ(r) · 4πr² = Q_enc(r) / ε₀</code></p>
+        <p><code>Eᵣ(r) = k · Q_enc(r) / r²</code></p>
+        <p>
+          El 4πr² es el área de la esfera gaussiana. No es el elemento de volumen —
+          es el área total de la superficie de integración.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: '⚙ Conductor vs Dieléctrico: la diferencia fundamental',
+    content: (
+      <>
+        <p>
+          La diferencia es la <strong>movilidad de las cargas</strong>:
+        </p>
+        <p>
+          <strong>Conductor:</strong> tiene cargas libres (electrones de conducción) que
+          pueden moverse por todo el material. En equilibrio electrostático, si hubiera
+          campo interno, esas cargas se moverían — contradicción. Por lo tanto E = 0
+          dentro del conductor en equilibrio. Toda la carga neta queda en las superficies.
+        </p>
+        <p>
+          <strong>Dieléctrico (no conductor):</strong> las cargas están ligadas a sus
+          átomos y no pueden moverse libremente. La carga queda atrapada donde está —
+          en este problema, distribuida en el volumen con densidad ρ(r). Ningún campo
+          externo la desplaza.
+        </p>
+        <p>
+          Consecuencia directa en el problema:
+        </p>
+        <p><code>Dieléctrico: carga en el volumen → hay que integrar ρ(r)</code></p>
+        <p><code>Conductor: E = 0 adentro → carga solo en superficies → σ_c y σ_d</code></p>
+      </>
+    ),
+  },
+]
+
 const ACCORDION_ITEMS = [
   {
     title: '⚙ Fundamentos: Ley de Gauss y simetría esférica',
@@ -196,13 +367,42 @@ const RC_PX = Rc * SCALE
 const RD_PX = Rd * SCALE
 
 const RESULTADOS = [
-  { mag: 'Q_total del dieléctrico',                       val: '−1,44π μC ≈ −4,524 μC' },
-  { mag: 'σ_c  cara interior Rc=0,9m',                    val: '+4/9 μC/m² ≈ +0,444 μC/m²' },
-  { mag: 'σ_d  cara exterior Rd=1,1m',                    val: '−36/121 μC/m² ≈ −0,298 μC/m²' },
-  { mag: 'E(P1)  |r|=0,7m=Rᵦ (frontera)',                 val: '−83.092 N/C r̂' },
-  { mag: 'V(P1)',                                         val: '−49.939 V' },
-  { mag: 'E(P2)  (0,−0,7,−0,7)m → |r|≈0,990m — dentro del conductor', val: '0 N/C' },
-  { mag: 'V(P2)',                                         val: '−37.014 V' },
+  { mag: 'Q_total del dieléctrico',                       form: 'Q = ∫ ρ(r)·4πr² dr  de Ra a Rb',     val: '−1,44π μC ≈ −4,524 μC' },
+  { mag: 'σ_c  cara interior Rc=0,9m',                    form: 'σ = −Q_total / (4πRc²)',              val: '+4/9 μC/m² ≈ +0,444 μC/m²' },
+  { mag: 'σ_d  cara exterior Rd=1,1m',                    form: 'σ = Q_total / (4πRd²)',               val: '−36/121 μC/m² ≈ −0,298 μC/m²' },
+  { mag: 'E(P1)  |r|=0,7m=Rᵦ (frontera)',                 form: 'E = k·Q_total / Rb²',                val: '−83.092 N/C r̂' },
+  { mag: 'V(P1)',                                         form: 'V = k·Q_total·(1/Rd − 1/Rc + 1/Rb)', val: '−49.939 V' },
+  { mag: 'E(P2)  (0,−0,7,−0,7)m → |r|≈0,990m — dentro del conductor', form: 'E = 0  (equilibrio electrostático)', val: '0 N/C' },
+  { mag: 'V(P2)',                                         form: 'V = k·Q_total / Rd',                  val: '−37.014 V' },
+]
+
+const PROC_CARDS = [
+  {
+    header: 'i) Densidades superficiales de carga en el conductor',
+    body: `El primer paso fue calcular la carga total Q_total del cascarón dieléctrico. Como la densidad ρ(r) = −3/r μC/m³ no es uniforme sino que varía con r, no es posible usar Q = ρ·V. Es necesario integrar ρ en todo el volumen del cascarón usando el elemento de volumen en coordenadas esféricas dV = 4πr²dr, que resulta de integrar la parte angular (sen θ dθ dφ) sobre la esfera completa. La integración desde Ra hasta Rb da Q_total = −1,44π μC.
+
+Con Q_total conocido, se aplica la condición de equilibrio electrostático del conductor: el campo eléctrico dentro del material conductor es siempre nulo. Aplicando la Ley de Gauss con una superficie gaussiana esférica sumergida en el material del conductor, la carga total encerrada debe ser cero. Esto obliga a la cara interior (r = Rc) a adquirir una carga inducida de +1,44π μC exacta, que cancela el campo del dieléctrico. Como el conductor es eléctricamente neutro en total, la cara exterior (r = Rd) queda con −1,44π μC. Dividiendo cada carga por el área de su superficie (4πR²) se obtienen σ_c y σ_d.`,
+  },
+  {
+    header: 'ii) Campo eléctrico y potencial en todo el espacio',
+    body: `El sistema completo se divide en cinco zonas concéntricas. En cada zona se elige una superficie gaussiana esférica de radio r centrada en el origen. La simetría esférica del sistema (ρ depende solo de r) garantiza que el campo es puramente radial y constante en cada esfera, lo que permite sacarlo de la integral de flujo: Eᵣ(r)·4πr² = Q_enc(r)/ε₀, y despejar Eᵣ(r) = k·Q_enc(r)/r².
+
+En la zona interior (r < Ra) no hay carga encerrada: E = 0. Dentro del dieléctrico (Ra < r < Rb) la carga encerrada crece con r según Q_enc(r) = −6π×10⁻⁶(r²−0,25), dando un campo que parte de cero en Ra y crece hasta su máximo en Rb. En el vacío entre cascarones (Rb < r < Rc) y en el exterior (r > Rd) la carga encerrada es siempre Q_total (el conductor neutro no suma carga neta), por eso ambas zonas tienen la misma fórmula E = k·Q_total/r². Dentro del conductor (Rc < r < Rd) el campo es cero por definición de equilibrio electrostático.
+
+El potencial se obtiene integrando V(r) = −∫E(r)dr en cada zona, tomando V(∞) = 0 como referencia. La constante de integración que aparece en cada zona se determina por continuidad: el potencial no puede tener saltos en ningún punto del espacio, porque eso implicaría trabajo infinito para desplazar una carga una distancia infinitesimal. Se engancha de afuera hacia adentro: V₅ fija V₄ (el conductor es equipotencial), V₄ fija la constante de V₃, V₃ fija la de V₂, y V₂ evaluado en Ra da el potencial constante de V₁.`,
+  },
+  {
+    header: 'iii) Gráficos de Eᵣ(r) y V(r)',
+    body: `Los gráficos se construyen evaluando las mismas fórmulas del punto ii en un rango continuo de r entre 0 y 1,5 m. El gráfico del campo muestra discontinuidades de salto finito exclusivamente en r = Rc = 0,9 m y r = Rd = 1,1 m, que son las fronteras del conductor donde existen densidades superficiales de carga concentradas (σ_c y σ_d). En cambio, las fronteras del dieléctrico (r = Ra y r = Rb) muestran una transición estrictamente continua, porque la carga está distribuida en el volumen sin ninguna concentración superficial. El gráfico del potencial es globalmente continuo en todo el dominio: V nunca tiene saltos, aunque E sí los tenga.`,
+  },
+  {
+    header: 'iv) Evaluación en los puntos P1 y P2',
+    body: `Para evaluar el campo y el potencial en un punto dado, el primer paso siempre es calcular su módulo radial |r⃗| = √(x²+y²+z²) e identificar en qué zona cae ese valor.
+
+P1 tiene |r| = 700 mm = 0,7 m, que coincide exactamente con Rb, el borde exterior del dieléctrico. Como en esa frontera no hay carga superficial (la carga es volumétrica), el campo es continuo: puede calcularse con la fórmula de zona 2 o zona 3 y el resultado es el mismo. Se obtiene E(P1) = −83.092 N/C r̂ y V(P1) = −49.939 V.
+
+P2 = (0, −0,7, −0,7) m requiere calcular el módulo: |r⃗| = √(0²+0,49+0,49) = √0,98 ≈ 0,990 m. Este valor cae estrictamente dentro del intervalo 0,9 m < r < 1,1 m, es decir, en el interior del conductor. Por lo tanto E(P2) = 0 directamente por equilibrio electrostático, y V(P2) = −37.014 V igual al potencial del conductor, que es constante en todo su volumen.`,
+  },
 ]
 
 const CHART_DATA = Array.from({ length: 300 }, (_, i) => {
@@ -217,10 +417,21 @@ const BOUNDARIES = [
   { x: Rd, label: '1,1' },
 ]
 
+const ZONE_FORMULAS = {
+  1: { E: 'E(r) = 0', V: 'V(r) = −18981,8π ≈ −59.633 V  (constante)' },
+  2: { E: 'E(r) = −54000π (1 − 0,25/r²)  N/C', V: 'V(r) = 54000π (r + 0,25/r) − 72981,8π  V' },
+  3: { E: 'E(r) = −12960π / r²  N/C', V: 'V(r) = −12960π/r + 2618,2π  V' },
+  4: { E: 'E(r) = 0  (conductor en equilibrio)', V: 'V(r) = −11781,8π ≈ −37.014 V  (constante)' },
+  5: { E: 'E(r) = −12960π / r²  N/C', V: 'V(r) = −12960π / r  V' },
+}
+
 export default function ConductoresConcentricos() {
   const [r, setR] = useState(0.8)
   const [openItem, setOpenItem] = useState(null)
   const toggle = (i) => setOpenItem(prev => prev === i ? null : i)
+  const [openFund, setOpenFund] = useState(null)
+  const toggleFund = (i) => setOpenFund(prev => prev === i ? null : i)
+  const [openProc, setOpenProc] = useState(null)
 
   const zone = useMemo(() => getZone(r), [r])
   const E = useMemo(() => calcE(r), [r])
@@ -315,6 +526,11 @@ export default function ConductoresConcentricos() {
 
         <div className="fs-values">
           <div className="fs-card">
+            <div className="fs-card-title">Fórmula activa</div>
+            <div className="cc2-formula">{ZONE_FORMULAS[zone.num].E}</div>
+            <div className="cc2-formula cc2-formula--spaced">{ZONE_FORMULAS[zone.num].V}</div>
+          </div>
+          <div className="fs-card">
             <div className="fs-card-title">Zona actual</div>
             <div className="cc2-zone" style={{ color: ZONE_COLORS[zone.num] }}>
               {zone.label}
@@ -332,37 +548,28 @@ export default function ConductoresConcentricos() {
       {/* ── Fixed results table ──────────────────────────────────────────── */}
       <div className="cc-table-wrap">
         <table className="cc-table">
+          <colgroup>
+            <col style={{ width: '35%' }} />
+            <col style={{ width: '38%' }} />
+            <col style={{ width: '27%' }} />
+          </colgroup>
           <thead>
             <tr>
               <th>Magnitud</th>
+              <th>Fórmula utilizada</th>
               <th>Valor</th>
             </tr>
           </thead>
           <tbody>
-            {RESULTADOS.map(({ mag, val }) => (
+            {RESULTADOS.map(({ mag, form, val }) => (
               <tr key={mag}>
                 <td>{mag}</td>
+                <td className="cc-table-formula">{form}</td>
                 <td>{val}</td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
-
-      {/* ── Accordion ────────────────────────────────────────────────────── */}
-      <h3 className="cc2-section-title">Justificación de las fórmulas</h3>
-      <div className="cc2-accordion">
-        {ACCORDION_ITEMS.map((item, i) => (
-          <div key={i} className="cc2-accordion-item">
-            <button className="cc2-accordion-header" onClick={() => toggle(i)}>
-              <span>{item.title}</span>
-              <span className="cc2-chevron">{openItem === i ? '▼' : '▶'}</span>
-            </button>
-            {openItem === i && (
-              <div className="cc2-accordion-body">{item.content}</div>
-            )}
-          </div>
-        ))}
       </div>
 
       {/* ── Charts ───────────────────────────────────────────────────────── */}
@@ -427,6 +634,65 @@ export default function ConductoresConcentricos() {
           </LineChart>
         </ResponsiveContainer>
       </div>
+
+      {/* ── Procedimiento por punto ───────────────────────────────────────── */}
+      <h3 className="cc2-section-title">Procedimiento por punto</h3>
+      <div className="cc2-accordion">
+        {PROC_CARDS.map((card, i) => (
+          <div key={i} className="cc2-accordion-item">
+            <button
+              className="cc2-accordion-header cc2-accordion-header--proc"
+              onClick={() => setOpenProc(prev => prev === i ? null : i)}
+            >
+              <span>{card.header}</span>
+              <span className="cc2-chevron">{openProc === i ? '▼' : '▶'}</span>
+            </button>
+            {openProc === i && (
+              <div className="cc2-accordion-body">
+                {card.body.split('\n\n').map((para, j) => (
+                  <p key={j}>{para}</p>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* ── Conceptos Fundamentales ──────────────────────────────────────── */}
+      <h3 className="cc2-section-title">Conceptos fundamentales</h3>
+      <div className="cc2-accordion">
+        {FUND_ITEMS.map((item, i) => (
+          <div key={i} className="cc2-accordion-item">
+            <button
+              className="cc2-accordion-header cc2-accordion-header--fund"
+              onClick={() => toggleFund(i)}
+            >
+              <span>{item.title}</span>
+              <span className="cc2-chevron">{openFund === i ? '▼' : '▶'}</span>
+            </button>
+            {openFund === i && (
+              <div className="cc2-accordion-body">{item.content}</div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* ── Accordion ────────────────────────────────────────────────────── */}
+      <h3 className="cc2-section-title">Justificación de las fórmulas</h3>
+      <div className="cc2-accordion">
+        {ACCORDION_ITEMS.map((item, i) => (
+          <div key={i} className="cc2-accordion-item">
+            <button className="cc2-accordion-header" onClick={() => toggle(i)}>
+              <span>{item.title}</span>
+              <span className="cc2-chevron">{openItem === i ? '▼' : '▶'}</span>
+            </button>
+            {openItem === i && (
+              <div className="cc2-accordion-body">{item.content}</div>
+            )}
+          </div>
+        ))}
+      </div>
+
     </div>
   )
 }
